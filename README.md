@@ -18,6 +18,29 @@ La herramienta evoluciona con la participación de los estudiantes, actualizando
 
 ## Datos Abiertos
 Desde la versión 2.2.0 hemos incorporado la publicación de datos anonimizados de las consultas, las respuestas, dudas, y los derechos de los estudiantes del Uruguay.
+
+### Publicación automática en CKAN
+La tarea `dataexport:ckan_upload` genera los cuatro archivos JSON de datos abiertos y sincroniza un conjunto de datos con cuatro recursos en CKAN. Usa la API Action v3 (`/api/3/action`) y actualiza los recursos existentes sin duplicarlos.
+
+//TODO: Configurar las credenciales Rails cifradas con esta estructura:
+
+```yaml
+ckan:
+	server: https://catalogo.example.uy
+	api_key: <token de API de CKAN>
+	organization: <slug de la organización>
+	package_name: derechos-de-estudiantes
+	public_base_url: https://derechosdeestudiantes.edu.uy
+```
+
+Para ejecutar manualmente:
+
+```sh
+RAILS_ENV=production bundle exec rake dataexport:ckan_upload
+```
+
+//TODO: configurar el scheduler del servidor para ejecutar el comando 
+
 ## Instalación
 ssh ull  
 Description:    Debian GNU/Linux 9.11 (stretch)  
